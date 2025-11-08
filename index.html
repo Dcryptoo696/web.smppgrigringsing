@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP PGRI Gringsing - Sekolah Unggul Berakhlak Mulia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #0056b3;
+            --accent: #ffc107;
+            --success: #28a745;
+            --danger: #dc3545;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.25);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            overflow-x: hidden;
+            perspective: 1500px;
+        }
+
+        /* === 3D HEADER === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 123, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateZ(30px) rotateY(8deg);
+        }
+
+        .logo-3d {
+            width: 70px;
+            height: 70px;
+            background: url('logo-3d.png') center/contain no-repeat;
+            margin-right: 15px;
+            transform: translateZ(20px);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            animation: logoPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: translateZ(20px) scale(1); }
+            50% { transform: translateZ(20px) scale(1.05); }
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            transform: translateZ(15px);
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            transform: translateZ(10px);
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-4px) translateZ(10px);
+            box-shadow: 0 8px 20px rgba(255,193,7,0.5);
+        }
+
+        nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        /* === HERO 3D === */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><circle cx="40" cy="40" r="20" fill="white"/><circle cx="160" cy="60" r="15" fill="white"/><circle cx="100" cy="140" r="18" fill="white"/></svg>') repeat;
+            animation: floatBg 25s infinite linear;
+        }
+
+        @keyframes floatBg {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .hero-content {
+            transform-style: preserve-3d;
+            z-index: 2;
+        }
+
+        .hero-logo-3d {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 2.5rem;
+            background: url('hero-logo-3d') center/contain no-repeat;
+            animation: rotate3D 25s infinite linear;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+            transform: translateZ(80px);
+        }
+
+        @keyframes rotate3D {
+            0% { transform: rotateY(0deg) translateZ(80px); }
+            100% { transform: rotateY(360deg) translateZ(80px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transform: translateZ(50px);
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateZ(50px) translateY(0); }
+            50% { transform: translateZ(50px) translateY(-25px); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            transform: translateZ(30px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            transform: translateZ(40px);
+        }
+
+        .btn-3d {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            box-shadow: 0 10px 0 transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 10px 0 #cc9a00;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 0 rgba(255,255,255,0.3);
+        }
+
+        .btn-3d:active {
+            transform: translateY(10px);
+            box-shadow: 0 0 0 transparent;
+        }
+
+        .btn-3d::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: var(--transition);
+        }
+
+        .btn-3d:hover::after {
+            left: 100%;
+        }
+
+        /* === MAIN CONTENT === */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        section {
+            margin-bottom: 7rem;
+            transform-style: preserve-3d;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: white;
+            border-radius: 60px;
+            box-shadow: var(--shadow);
+            transform: translateZ(50px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(30px);
+            width: 120px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* === 3D GRID CARDS === */
+        .grid-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            perspective: 1200px;
+        }
+
+        .card-3d {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-20px) translateZ(50px) rotateX(6deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            height: 220px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="%23ffffff" opacity="0.08"/><circle cx="35" cy="35" r="10" fill="%23ffffff" opacity="0.3"/><circle cx="85" cy="70" r="14" fill="%23ffffff" opacity="0.2"/></svg>');
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .card-image i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(40px);
+            font-size: 4.5rem;
+            color: white;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }
+
+        .card-content {
+            padding: 2rem;
+            transform: translateZ(25px);
+        }
+
+        .card-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        /* === PROFIL SEKOLAH 3D === */
+        .profile-3d {
+            text-align: center;
+            padding: 3.5rem;
+            background: white;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            transform: translateZ(60px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .school-badge {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 2.5rem;
+            background: url('school-badge') center/contain no-repeat;
+            animation: badgePulse 5s infinite;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1) rotateX(0); }
+            50% { transform: scale(1.06) rotateX(8deg); }
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            transform: translateZ(20px);
+        }
+
+        .info-item {
+            background: #f0f8ff;
+            padding: 1.2rem;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === GURU TABLE 3D === */
+        .table-3d {
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: var(--shadow-lg);
+            transform: translateZ(40px);
+            background: white;
+        }
+
+        .table-3d table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-3d th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .table-3d th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--accent);
+        }
+
+        .table-3d td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .table-3d tr:hover td {
+            background: #f8f9ff;
+            transform: translateZ(15px);
+        }
+
+        .table-3d tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === GALERI 3D TILT === */
+        .gallery-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            perspective: 1200px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 280px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+        }
+
+        .gallery-item:hover {
+            transform: translateZ(60px) scale(1.06);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            transform: translateZ(35px);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === KONTAK FORM 3D === */
+        .contact-form {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            transform: translateZ(50px);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem 1.6rem;
+            border: 3px solid #eee;
+            border-radius: 18px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            transform: translateZ(12px);
+            box-shadow: 0 8px 25px rgba(0,123,255,0.2);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            background: white;
+            padding: 0 12px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transform: translateZ(20px);
+        }
+
+        /* === FOOTER 3D === */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #111);
+            color: white;
+            padding: 5rem 2rem 3rem;
+            margin-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            transform: translateZ(40px);
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: 120px;
+            background: url('footer-logo') center/contain no-repeat;
+            margin-bottom: 1.5rem;
+            animation: footerFloat 7s ease-in-out infinite;
+        }
+
+        @keyframes footerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        footer h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        footer p, footer a {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-logo-3d { width: 200px; height: 200px; }
+            .section-title h2 { font-size: 2.4rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; height: auto; padding: 1rem; }
+            nav ul { margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
+            nav ul li { margin: 0.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .hero-logo-3d { width: 180px; height: 180px; }
+            .section-title h2 { font-size: 2rem; }
+            .grid-3d { grid-template-columns: 1fr; }
+            .profile-info { grid-template-columns: 1fr; }
+        }
+
+        /* Scroll Progress */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255,193,7,0.3);
+            z-index: 1001;
+            transform: translateZ(0);
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-3d"></div>
+                <div class="logo-text">SMP <span>PGRI</span> Gringsing</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#visi-misi">Visi Misi</a></li>
+                    <li><a href="#guru">Guru</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#kurikulum">Kurikulum</a></li>
+                    <li><a href="#kegiatan">Kegiatan</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-3d"></div>
+            <h1>SMP PGRI Gringsing</h1>
+            <p>Mencetak Generasi Berakhlak Mulia, Berprestasi, dan Siap Menghadapi Tantangan Global</p>
+            <div class="cta-buttons">
+                <button class="btn-3d btn-primary">PPDB Online 2025</button>
+                <button class="btn-3d btn-secondary">Virtual Tour</button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- PROFIL SEKOLAH -->
+        <section id="profil">
+            <div class="section-title">
+                <h2>Profil Sekolah</h2>
+            </div>
+            <div class="profile-3d">
+                <div class="school-badge"></div>
+                <h3>SMP PGRI Gringsing</h3>
+                <p><strong>Didirikan:</strong> 1 Januari 1970 (Operasional sejak 1983)</p>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <strong>NPSN</strong> 20322723
+                    </div>
+                    <div class="info-item">
+                        <strong>Akreditasi</strong> B (No. 165/BAP-SM/XI/2017)
+                    </div>
+                    <div class="info-item">
+                        <strong>Alamat</strong> Jl. Desa Ketanggan, Ketanggan, Kec. Gringsing, Kab. Batang, Jawa Tengah 51272
+                    </div>
+                    <div class="info-item">
+                        <strong>Kepala Sekolah</strong> Bapak Muhammad Setia Budi, S.Pd.
+                    </div>
+                    <div class="info-item">
+                        <strong>Jumlah Siswa</strong> 173 orang (Kelas 7-9)
+                    </div>
+                    <div class="info-item">
+                        <strong>Guru & Staf</strong> 13 orang
+                    </div>
+                    <div class="info-item">
+                        <strong>Email</strong> smppgrigringsing11@gmail.com
+                    </div>
+                    <div class="info-item">
+                        <strong>Telepon</strong> (0285) 1234567
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISI MISI -->
+        <section id="visi-misi">
+            <div class="section-title">
+                <h2>Visi & Misi</h2>
+            </div>
+            <div class="grid-3d">
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Visi</h3>
+                        <p>Menjadi sekolah unggulan yang mencetak lulusan beriman, bertakwa, berakhlak mulia, berprestasi akademik dan non-akademik, serta berwawasan lingkungan dan global.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Misi</h3>
+                        <ul style="padding-left:1.2rem; margin:0.8rem 0;">
+                            <li>Menyelenggarakan pendidikan berbasis karakter dan agama</li>
+                            <li>Meningkatkan kompetensi guru melalui pelatihan berkelanjutan</li>
+                            <li>Menyediakan fasilitas pembelajaran modern dan memadai</li>
+                            <li>Membangun kemitraan dengan orang tua, masyarakat, dan dunia usaha</li>
+                            <li>Mengembangkan ekstrakurikuler untuk pengembangan bakat siswa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GURU & STAF -->
+        <section id="guru">
+            <div class="section-title">
+                <h2>Guru & Tenaga Kependidikan</h2>
+            </div>
+            <div class="table-3d">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Jabatan / Mata Pelajaran</th>
+                            <th>Pendidikan Terakhir</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Indah Sukanto, S.Pd.</td>
+                            <td>Kepala Sekolah</td>
+                            <td>S1 Pendidikan</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Mela Selviana, S.Pd.</td>
+                            <td>Wakil Kepala Sekolah</td>
+                            <td>S1 Pendidikan</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Zaenal Muarif, S.Pd.</td>
+                            <td>Guru MTK</td>
+                            <td>S1 Pndidkan MTK</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Maemun, S.Pd.</td>
+                            <td>Guru PAI</td>
+                            <td>S1 Pendidikan Agama Islam</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Fitriya Ashfiyani, S.Pd.</td>
+                            <td>Guru Bahasa Inggris</td>
+                            <td>S1 Pendidikan Bahasa Inggris</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Tarmiati, S.Pd.</td>
+                            <td>Guru BK</td>
+                            <td>S1 Pendidikan Bimbingan Konseling</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Agus Bimo Purwoko, S.Pd.</td>
+                            <td>Guru PJOK</td>
+                            <td>S1 Pendidikan Jasmani</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Eko Nurjayanto, S.Pd.</td>
+                            <td>Guru BK</td>
+                            <td>S1 Pendidikan Bimbingan Konseling</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Galuh Parahita, S.Pd.</td>
+                            <td>Guru Bahasa Inggris</td>
+                            <td>S1 Pendidikan Bahasa Inggris</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Tatin Swastika, S.Pd.</td>
+                            <td>Guru Bahasa Indonesia</td>
+                            <td>S1 Pendidikan Bahasa Indonesia</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Shalfa Maftukhah, S.Pd.</td>
+                            <td>Guru Bahasa IPS</td>
+                            <td>S1 Pendidikan IPS</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Siti Nur Yumaroh</td>
+                            <td>KTU</td>
+                            <td>SMA</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Mashudi</td>
+                            <td>Operator Sekolah</td>
+                            <td>SMA</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                        <tr>
+                            <td>Sobirin</td>
+                            <td>Penjaga</td>
+                            <td>SMA</td>
+                            <td>GTY/PTY</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FASILITAS -->
+        <section id="fasilitas">
+            <div class="section-title">
+                <h2>Fasilitas Sekolah</h2>
+            </div>
+            <div class="grid-3d">
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Ruang Kelas</h3>
+                        <p>6 ruang kelas nyaman dengan papan tulis interaktif, ventilasi baik, kapasitas 45 siswa per kelas, dilengkapi AC dan proyektor.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Laboratorium IPA</h3>
+                        <p>Lengkap dengan alat peraga eksperimen fisika, kimia, dan biologi. Tersedia mikroskop digital dan sensor IoT untuk praktikum.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Perpustakaan Digital</h3>
+                        <p>Koleksi 5.000+ buku fisik dan 2.000 e-book, akses internet Telkomsel Flash, ruang baca ber-AC, sistem peminjaman online.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lapangan Olahraga</h3>
+                        <p>Lapangan serbaguna 40x60m untuk basket, voli, futsal, dan upacara. Dilengkapi tribun, lampu sorot, dan drainase.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Hotspot WiFi</h3>
+                        <p>Jaringan internet 100 Mbps di seluruh area sekolah. Akses terbatas untuk pembelajaran dan administrasi.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kantin Sehat</h3>
+                        <p>Menyediakan makanan bergizi, higienis, terjangkau. Menu harian bergizi seimbang, bebas MSG, dan ramah anak.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KURIKULUM -->
+        <section id="kurikulum">
+            <div class="section-title">
+                <h2>Kurikulum & Program Unggulan</h2>
+            </div>
+            <div class="grid-3d">
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kurikulum Merdeka</h3>
+                        <p>Pembelajaran berbasis proyek, penguatan karakter, keterampilan abad 21, dan fleksibilitas kurikulum sesuai minat siswa.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Bahasa Inggris Intensif</h3>
+                        <p>Program Cambridge, persiapan TOEFL, English Club, dan pertukaran pelajar virtual dengan sekolah internasional.</p>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>STEM & Robotik</h3>
+                        <p>Kelas robotik, coding Python, Arduino, dan kompetisi nasional. Sudah meraih 5 medali tingkat provinsi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEGIATAN & PRESTASI -->
+        <section id="kegiatan">
+            <div class="section-title">
+                <h2>Ekstrakurikuler & Prestasi</h2>
+            </div>
+            <div class="grid-3d">
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Prestasi Terbaru</h3>
+                        <ul style="padding-left:1.2rem; margin:0.8rem 0;">
+                            <li>Juara 3 DBL Basket Putri Kab. Batang 2024</li>
+                            <li>Akreditasi B - BAN SM 2017</li>
+                            <li>Best Presentation Anti-Narkoba UNDIP KKN 2024</li>
+                            <li>Juara 2 Lomba Cerdas Cermat Agama Tingkat Kabupaten</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-3d">
+                    <div class="card-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Ekstrakurikuler</h3>
+                        <ul style="padding-left:1.2rem; margin:0.8rem 0;">
+                            <li>Pramuka (Wajib)</li>
+                            <li>Basket & Voli (Kompetisi)</li>
+                            <li>Seni Tari Tradisional Jawa</li>
+                            <li>Jurnalistik & Broadcasting</li>
+                            <li>Robotik & Coding Club</li>
+                            <li>English Conversation Club</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERI -->
+        <section id="galeri">
+            <div class="section-title">
+                <h2>Galeri Kegiatan</h2>
+            </div>
+            <div class="gallery-3d">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 350'><rect fill='%23dc3545' width='500' height='350'/><text x='250' y='175' font-size='40' text-anchor='middle' fill='white' font-weight='bold'>Upacara Bendera</text></svg>" alt="Upacara">
+                    <div class="gallery-overlay">
+                        <h4>Upacara Bendera</h4>
+                        <p>Setiap Senin pagi - Pembinaan karakter dan nasionalisme</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 350'><rect fill='%2300c853' width='500' height='350'/><text x='250' y='175' font-size='40' text-anchor='middle' fill='white' font-weight='bold'>Latihan Basket DBL</text></svg>" alt="Basket">
+                    <div class="gallery-overlay">
+                        <h4>Latihan Basket DBL</h4>
+                        <p>Persiapan kompetisi tingkat kabupaten</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 350'><rect fill='%23ff9800' width='500' height='350'/><text x='250' y='175' font-size='40' text-anchor='middle' fill='white' font-weight='bold'>Kemah Pramuka</text></svg>" alt="Pramuka">
+                    <div class="gallery-overlay">
+                        <h4>Kemah Pramuka</h4>
+                        <p>Pengembangan kemandirian dan kepemimpinan</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 350'><rect fill='%239c27b0' width='500' height='350'/><text x='250' y='175' font-size='40' text-anchor='middle' fill='white' font-weight='bold'>Pementasan Seni</text></svg>" alt="Seni">
+                    <div class="gallery-overlay">
+                        <h4>Pementasan Seni Budaya</h4>
+                        <p>Pelestarian budaya Jawa Tengah</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KONTAK -->
+        <section id="kontak">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="email@contoh.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subjek</label>
+                        <select required>
+                            <option value="">Pilih subjek</option>
+                            <option>Pendaftaran PPDB</option>
+                            <option>Informasi Sekolah</option>
+                            <option>Kerjasama</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pesan</label>
+                        <textarea rows="6" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-3d btn-primary" style="width:100%; padding:1.3rem; font-size:1.2rem;">
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo"></div>
+                <h3>SMP PGRI Gringsing</h3>
+                <p>Mencetak generasi unggul berakhlak mulia sejak 1970. Terakreditasi B, berbasis karakter dan teknologi.</p>
+            </div>
+            <div>
+                <h3>Alamat</h3>
+                <p>Jl. Desa Ketanggan, Ketanggan<br>Kec. Gringsing, Kab. Batang<br>Jawa Tengah 51281</p>
+            </div>
+            <div>
+                <h3>Kontak</h3>
+                <p>Email: smppgrigringsing09@gmail.com<br>Telp: (0285) 1234567<br>Jam Operasional: 07:00 - 12:30 (Senin-Sabtu)</p>
+            </div>
+            <div>
+                <h3>Ikuti Kami</h3>
+                <p>
+                    <a href="#">Facebook</a> | 
+                    <a href="#">Instagram</a> | 
+                    <a href="#">YouTube</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SMP PGRI Gringsing. Dibuat dengan teknologi 3D modern. Hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollPercentage + '%';
+        });
+
+        // 3D tilt for cards
+        document.querySelectorAll('.card-3d, .gallery-item').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 8;
+                const rotateY = (centerX - x) / 8;
+                el.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(30px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
